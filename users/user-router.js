@@ -1,14 +1,14 @@
-const router = require('express').Router();
-
+const express = require('express');
 const Users = require('./user-model');
+const router = express.Router();
 const protected = require('../auth/protected_middleware');
 
 router.get('/', protected, (req, res) => {
     Users.find()
-         .then(users => {
-             res.json(users);
-        })
-         .catch(err => json(err))
+      .then(users => {
+        res.json(users);
+      })
+      .catch(err => res.send(err));
 });
 
 module.exports = router;
